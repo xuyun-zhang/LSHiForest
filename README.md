@@ -1,2 +1,1 @@
-Hello, this is a test
-this is a second test
+This is the implementation of LSHiForest
