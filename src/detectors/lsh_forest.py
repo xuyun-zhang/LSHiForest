@@ -6,11 +6,11 @@
 import numpy as np
 import copy as cp
 
-import lsh_tree as lt
-import lsh
-import klsh
-import sampling as sp
-import bagging as bg
+from . import lsh_tree as lt
+from . import lsh
+from . import klsh
+from . import sampling as sp
+from . import bagging as bg
 
 class LSHForest:
 	def __init__(self, num_trees, sampler, lsh_family, granularity=1):

@@ -36,10 +36,10 @@ class E2LSH(LSH):
 
 	def display_hash_func_parameters(self):
 		for i in range(len(self.A_array)):
-			print self.A_array[i], self.B_array[i]
+			print (self.A_array[i], self.B_array[i])
 
 	def fit(self, data):
-		if data == None:
+		if (data == None).all():
 			return
 		self._dimensions = len(data[0])-1
 
@@ -106,10 +106,11 @@ class AngleLSH(LSH):
 
 	def display_hash_func_parameters(self):
 		for i in range(len(self._weights)):
-			print self._weights[i]
+			print(self._weights[i])
 
 	def fit(self, data):
-		if data == None:
+		#if data == None:
+		if data is None:
 			return
 		self._dimensions = len(data[0])-1
 
@@ -164,7 +165,7 @@ class MinLSH(LSH):
 
 	def display_hash_func_parameters(self):
 		for i in range(len(self._hash_parameters_pool)):
-			print self._hash_parameters_pool[i]
+			print(self._hash_parameters_pool[i])
 
 	def format_for_lsh(self, x):
 		return x
@@ -206,7 +207,7 @@ class MinLSH(LSH):
 
 	def _is_prime(self, x):
 		if x < 2:
-			print 'Input Error!!!'
+			print('Input Error!!!')
 		if x == 2 or x == 3:
 			return True
 		if x%2 == 0:

@@ -5,7 +5,7 @@
 
 import numpy as np
 
-import lsh_node as nd
+from . import lsh_node as nd
 
 class LSHTree:
 	def __init__(self, lsh):
@@ -47,8 +47,8 @@ class LSHTree:
 			for key in partition.keys():
 				children_count[key] = len(partition.get(key))
 
-			mean = np.mean(children_count.values()) 
-			std = np.std(children_count.values())
+			mean = np.mean(list(children_count.values()))
+			std = np.std(list(children_count.values()))
 				
 			children = {}
 			for key in partition.keys():
@@ -84,7 +84,7 @@ class LSHTree:
 			return
 		children = lsh_node.get_children()
 
-		print leftStr+'('+str(len(leftStr))+','+str(lsh_node._hash_func_index)+'):'+str(lsh_node._data_size)+':'+str(lsh_node._children_count)+','+str(lsh_node._lof)
+		print(leftStr+'('+str(len(leftStr))+','+str(lsh_node._hash_func_index)+'):'+str(lsh_node._data_size)+':'+str(lsh_node._children_count)+','+str(lsh_node._lof))
 		
 		for key in children.keys():
 			self._recursive_display(children[key], leftStr+' ')

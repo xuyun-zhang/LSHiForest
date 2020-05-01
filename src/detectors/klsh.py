@@ -5,10 +5,11 @@
 
 import numpy as np
 from sklearn.metrics import pairwise, pairwise_kernels
-from scipy.misc import comb
+#from scipy.misc import comb
+from scipy.special import comb
 import types as tp
 
-from lsh import LSH
+from .lsh import LSH
 
 
 class KernelLSH(LSH):
@@ -37,8 +38,8 @@ class KernelLSH(LSH):
 
 	
 	def display_hash_func_parameters(self):
-		print self._e_s_pool
-		print self._weight_pool
+		print (self._e_s_pool)
+		print (self._weight_pool)
 		return None
 
 
@@ -64,9 +65,11 @@ class KernelLSH(LSH):
 		#print self._para_p, self._para_t
 		
 		if self._kernel_func == 'rbf':
-			if type(self._kernel_kwds) == tp.StringType and self._kernel_kwds == 'auto':
+#			if type(self._kernel_kwds) == tp.StringType and self._kernel_kwds == 'auto':
+			if type(self._kernel_kwds) == str and self._kernel_kwds == 'auto':
 				self._kernel_kwds = 1.0/d
-			elif type(self._kernel_kwds) == tp.StringType and self._kernel_kwds == 'range':
+#			elif type(self._kernel_kwds) == tp.StringType and self._kernel_kwds == 'range':
+			elif type(self._kernel_kwds) == str and self._kernel_kwds == 'range':
 				self._kernel_kwds = pow(10, np.random.uniform(np.log10(0.1/d), np.log10(1.0/d)))
 
 		# Compute the kernel matrix
@@ -102,7 +105,7 @@ class KernelLSH(LSH):
 		n_X, d_X = X.shape
 		n_Y, d_Y = Y.shape
 		if d_X != d_Y:
-			print 'Dimensions not matched!!!', d_X, d_Y
+			print('Dimensions not matched!!!', d_X, d_Y)
 			return None	
 
 		part_X = sum(np.power(X.T, 2)).T * np.mat(np.ones((1, n_Y)))
@@ -147,7 +150,7 @@ class KernelLSH(LSH):
 		
 	def _generate_e_s(self):
 		e_s = np.zeros((self._para_p, self._nbits))
-        	i = np.array([np.random.choice(self._para_p, self._para_t, False) for i in range(self._nbits)]).T
+		i = np.array([np.random.choice(self._para_p, self._para_t, False) for i in range(self._nbits)]).T
 		e_s[i, range(self._nbits)] = 1
 		return np.mat(e_s)
 

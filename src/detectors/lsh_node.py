@@ -14,12 +14,12 @@ class LSHNode:
 
 
 	def display(self):
-		print self._hash_func_index
+		print(self._hash_func_index)
 		#print self._data
-		print self._data_size
-		print self._children
-		print self._children_count
-		print self._lof
+		print(self._data_size)
+		print(self._children)
+		print(self._children_count)
+		print(self._lof)
 
 	
 	def get_children(self):

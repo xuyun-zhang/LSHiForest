@@ -1,0 +1,16 @@
+Change log:
+
+30th April 2020
+---------------------------
+1. Define a new class LSHiForest wrapping LSHForest to make the API clearer. LSHiForest just simple extends LSHForest.
+
+
+11th April 2020
+---------------------------
+Changes from Python 2 to Python 3:
+1. print --> print()
+2. array == None  --> array is None or (array ==).all()
+3. range.remove() --> list(range).remove()
+4. dict.values() --> list(dict.values)
+5. local import: import .xxxmodule  and from . import xxx 
+6. types.StringType --> str

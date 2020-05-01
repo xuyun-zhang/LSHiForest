@@ -22,10 +22,10 @@ class VSSampling(Sampling):
 		self._lower_bound = lower_bound
 		self._upper_bound = upper_bound
 		self._vs_type = vs_type
+    
 
-	
 	def fit(self, data):
-		if data == None:
+		if data is None:
 			return
 		if self._bagging != None:
 			self._bagging_instances = []
@@ -33,7 +33,7 @@ class VSSampling(Sampling):
 				self._bagging.fit(data)
 				self._bagging_instances.append(cp.deepcopy(self._bagging))
 
-	
+
 	def draw_samples(self, data):
 		
 		data_size = len(data)
@@ -61,7 +61,8 @@ class VSSampling(Sampling):
 				elif self._vs_type == 'EXP':
 					sample_size = min(data_size, int(round(np.power(2.0, np.random.uniform(np.log2(self._lower_bound), np.log2(self._upper_bound))))))
 
-				remain_indices = range(data_size)
+                #remain_indices = range(data_size)
+				remain_indices = list(range(data_size))
 				new_indices = []
 				for j in range(sample_size):
 					index_ind = np.random.randint(0, len(remain_indices), 1)[0]
